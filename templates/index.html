@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+    <h5 id="heading">每日迭代总结提交</h5>
+    <!-- Example single danger button -->
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="project_name">
+      Select Projects
+    </button>
+        <div class="dropdown-menu">
+            <button class="dropdown-item" id="tianji">Tianji 1.5</button>
+            <button class="dropdown-item" id="bms">BMS</button>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="member_name">
+      Select Member
+    </button>
+        <div class="dropdown-menu">
+            <button class="dropdown-item" id="pylai">pylai</button>
+            <button class="dropdown-item" id="jasonzhang">JasonZhang</button>
+            <button class="dropdown-item" id="dingtao">Dingtao</button>
+            <button class="dropdown-item" id="weibin">Weibin</button>
+            <button class="dropdown-item" id="chucheng">chucheng</button>
+        </div>
+
+        <span class="input-group-text">昨天完成工作量</span>
+
+        <input type="text" class="form-control" id="past_workload">
+        <span class="input-group-text">今天计划完成工作量</span>
+
+        <input type="text" class="form-control" id="today_workload">
+        <span class="input-group-text" id="">迭代剩余工作量</span>
+
+        <input type="text" class="form-control" id="left_workload">
+        <span class="input-group-text" id="">风险</span>
+        <input type="text" class="form-control" id="risk">
+
+        <button type="button" class="btn btn-success" id="submit" style="margin-left: 0.5rem;">提交</button>
+    </div>
+
+    <a type="button" class="btn btn-info" id="heading" style="margin-left: 45%; width: 12rem;" href="{{ url_for('result') }}">查看现有总结</a>
+    <div id="heading">
+        <h5>Data from Gitlab and Jira</h5>
+    </div>
+    <h6 id="heading">Gitlab Projects</h6>
+    <div class="gitlab">
+        <div class="row">
+            <div class="col-4">
+                <div class="list-group" id="list-tab" role="tablist">
+                    {% for key,value in gitlab_projects.items() %}
+
+                    <a class="list-group-item list-group-item-action" data-toggle="list" href='#{{value}}' role="tab"> {{key}}</a> {% endfor %}
+                </div>
+            </div>
+            <div class="col-8">
+
+                <div class="tab-content" id="nav-tabContent">
+                    {% for dict_item in total %} {% if not dict_item['not_first_branch'] %}
+                    <div class="tab-pane fade" id={{dict_item[ 'project_id']}} role="tabpanel">
+                        {% endif %}
+                        <p>Branch名称：{{dict_item['branch_name']}} </p>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"> # </th>
+                                    <th scope="col"> 姓名 </th>
+                                    <th scope="col"> 代码行数 </th>
+                                    <th scope="col"> commit数量 </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for value in dict_item['each_person'] %}
+                                <tr>
+                                    {% for person in value %} {% if person == 1 %}
+                                    <th scope="row">{{person}}</th>
+                                    {% else %}
+                                    <td>{{person}}</td>
+                                    {% endif %} {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% if dict_item['last_branch'] %}
+                    </div>
+                    {% endif %} {% endfor %}
+                </div>
+
+            </div>
+        </div>
+        <h6 id="heading">Jira Data</h6>
+        <a type="button" class="btn btn-info" id="heading" style="margin-left: 45%; width: 12rem;" href="{{ url_for('jira') }}">查看Jira数据</a>
+
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery-3.6.0.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/popper.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'main.js') }}"></script>
+
+</body>
+
+</html>

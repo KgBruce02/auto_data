@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        {% for value in tianji_reports %}
+        <ul>
+            <li> {{ value }} </li>
+        </ul>
+        {% endfor %}
+    </table>
+    <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="group_selected"> 
+      提交至相应钉钉群
+    </button>
+        <div class="dropdown-menu">
+            <button class="dropdown-item" id="bms_dingtalk">BMS研发群</button>
+            <button class="dropdown-item" id="tianji_dingtalk">天机研发</button>
+            <button class="dropdown-item" id="autotable_dingtalk">AT工程</button>
+        </div>
+    </div>
+    <form method="post">
+        <button type="button" class="btn btn-danger" name="clear" id="clear">清空现有记录</button>
+    </form>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'main.js') }}"></script>
+
+</body>
+
+</html>

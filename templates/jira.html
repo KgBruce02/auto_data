@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="jira">
+        <li class="list-group-item jira">BMS1.0 Sprint1</li>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Tasks Done</th>
+                    <th scope="col">Tasks In Progress</th>
+                    <th scope="col">Tasks To do</th>
+                    <th scope="col">Bugs Done</th>
+                    <th scope="col">Bugs In Progress</th>
+                    <th scope="col">Bugs To do</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>pylai</td>
+                    <td>6</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>zhengwu</td>
+                    <td>20</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>shen chucheng</td>
+                    <td>9</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <li class="list-group-item jira">BMS1.0 Sprint2</li>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Tasks Done</th>
+                    <th scope="col">Tasks In Progress</th>
+                    <th scope="col">Tasks To do</th>
+                    <th scope="col">Bugs Done</th>
+                    <th scope="col">Bugs In Progress</th>
+                    <th scope="col">Bugs To do</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>pylai</td>
+                    <td>16</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>7</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>zhengwu</td>
+                    <td>6</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>shen chucheng</td>
+                    <td>17</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <li class="list-group-item jira">BMS1.0 Sprint3</li>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Tasks Done</th>
+                    <th scope="col">Tasks In Progress</th>
+                    <th scope="col">Tasks To do</th>
+                    <th scope="col">Bugs Done</th>
+                    <th scope="col">Bugs In Progress</th>
+                    <th scope="col">Bugs To do</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in bms_sprint3 %}
+                <tr>
+                    {% for person in item %} {% if person == 1 %}
+                    <th scope="row">{{person}}</th>
+                    {% else %}
+                    <td>{{person}}</td>
+                    {% endif %} {% endfor %}
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        <li class="list-group-item jira">Tianji 1.5.1 Sprint1</li>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Tasks Done</th>
+                    <th scope="col">Tasks In Progress</th>
+                    <th scope="col">Tasks To do</th>
+                    <th scope="col">Bugs Done</th>
+                    <th scope="col">Bugs In Progress</th>
+                    <th scope="col">Bugs To do</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in tianji_sprint1 %}
+                <tr>
+                    {% for person in item %} {% if person == 1 %}
+                    <th scope="row">{{person}}</th>
+                    {% else %}
+                    <td>{{person}}</td>
+                    {% endif %} {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <li class="list-group-item jira">Tianji 1.5.1 Sprint2</li>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Tasks Done</th>
+                    <th scope="col">Tasks In Progress</th>
+                    <th scope="col">Tasks To do</th>
+                    <th scope="col">Bugs Done</th>
+                    <th scope="col">Bugs In Progress</th>
+                    <th scope="col">Bugs To do</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in tianji_sprint2 %}
+                <tr>
+                    {% for person in item %} {% if person == 1 %}
+                    <th scope="row">{{person}}</th>
+                    {% else %}
+                    <td>{{person}}</td>
+                    {% endif %} {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'main.js') }}"></script>
+
+</body>
+
+</html>
