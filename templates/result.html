@@ -13,26 +13,56 @@
 </head>
 
 <body>
-    <table>
+    <ul class="list-group list-group-flush">
         {% for value in tianji_reports %}
-        <ul>
-            <li> {{ value }} </li>
-        </ul>
+        <li class="list-group-item" style="margin-top: 1rem;"> {{ value }} </li>
         {% endfor %}
+    </ul>
+    <h5 style="display: flex; justify-content: center; margin-top: 1rem;">每日进度总结</h5>
+    <!-- <ul class="list-group list-group-flush">
+        {% for person in workload %} {% for key,value in person.items() %}
+        <li class="list-group-item" style="margin-top: 1rem;"> {{ key }}: {{ value }} </li>
+        {% endfor %} {% endfor %}
+    </ul> -->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">项目名称</th>
+                <th scope="col">姓名</th>
+                <th scope="col">关闭的任务数</th>
+                <th scope="col">昨日的工作量</th>
+                <th scope="col">数据更新日期</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in workload %}
+            <tr>
+                {% for key, value in person.items() %}
+                <td>{{value}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
-    <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="group_selected"> 
+    <!-- <div style="display: flex; justify-content: center; margin-top: 1rem;"> -->
+    <div class="form-inline row">
+        <div class="btn-group" style="margin-left: 38%;">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="group_selected"> 
       提交至相应钉钉群
     </button>
-        <div class="dropdown-menu">
-            <button class="dropdown-item" id="bms_dingtalk">BMS研发群</button>
-            <button class="dropdown-item" id="tianji_dingtalk">天机研发</button>
-            <button class="dropdown-item" id="autotable_dingtalk">AT工程</button>
+            <div class="dropdown-menu">
+                <button class="dropdown-item" id="bms_dingtalk">BMS研发群</button>
+                <button class="dropdown-item" id="tianji_dingtalk">天机研发</button>
+                <button class="dropdown-item" id="autotable_dingtalk">AT工程</button>
+            </div>
         </div>
+        <form method="post" style="margin-left: 1rem;">
+            <button type="button" class="btn btn-danger" name="clear" id="clear">清空现有记录</button>
+        </form>
+        <form>
+            <a type="button" class="btn btn-info" style="margin-left: 10%; width: 10rem;" href="{{ url_for('index') }}">返回主界面</a>
+        </form>
     </div>
-    <form method="post">
-        <button type="button" class="btn btn-danger" name="clear" id="clear">清空现有记录</button>
-    </form>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/jquery-3.6.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
